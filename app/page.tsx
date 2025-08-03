@@ -13,7 +13,7 @@ import {
   CreateLikeRequest 
 } from '../types';
 
-const API_BASE_URL = 'http://pw0kk4ocwoocc084w8skgk4s.82.25.105.179.sslip.io/api';
+const API_BASE_URL = 'http://uwwss4w0go8ccc4c0sc4gwww.82.25.105.179.sslip.io/api';
 
 export default function Home() {
   const [users, setUsers] = useState<User[]>([]);
@@ -27,7 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     // Initialize socket connection
-    const newSocket = io('http://pw0kk4ocwoocc084w8skgk4s.82.25.105.179.sslip.io');
+    const newSocket = io('http://uwwss4w0go8ccc4c0sc4gwww.82.25.105.179.sslip.io');
     setSocket(newSocket);
 
     // Load initial data
