@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import io, { Socket } from 'socket.io-client';
 import { 
@@ -40,19 +40,6 @@ export default function Home() {
     };
   }, []);
 
-  useEffect(() => {
-    if (socket && selectedUser) {
-      socket.emit('join', selectedUser.id);
-      
-      socket.on('notification', (notification: Notification) => {
-        setNotifications(prev => [notification, ...prev]);
-        setUnreadCount(prev => prev + 1);
-      });
-
-      loadNotifications();
-    }
-  }, [socket, selectedUser]);
-
   const loadUsers = async (): Promise<void> => {
     try {
       const response = await axios.get<User[]>(`${API_BASE_URL}/users`);
@@ -71,7 +58,7 @@ export default function Home() {
     }
   };
 
-  const loadNotifications = async (): Promise<void> => {
+  const loadNotifications = useCallback(async (): Promise<void> => {
     if (!selectedUser) return;
     
     try {
@@ -81,7 +68,20 @@ export default function Home() {
     } catch (error) {
       console.error('Error loading notifications:', error);
     }
-  };
+  }, [selectedUser]);
+
+  useEffect(() => {
+    if (socket && selectedUser) {
+      socket.emit('join', selectedUser.id);
+      
+      socket.on('notification', (notification: Notification) => {
+        setNotifications(prev => [notification, ...prev]);
+        setUnreadCount(prev => prev + 1);
+      });
+
+      loadNotifications();
+    }
+  }, [socket, selectedUser, loadNotifications]);
 
   const createUser = async (): Promise<void> => {
     const username = prompt('Enter username:');
