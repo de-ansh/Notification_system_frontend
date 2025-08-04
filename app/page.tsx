@@ -13,7 +13,7 @@ import {
   CreateLikeRequest 
 } from '../types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3001/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://uwwss4w0go8ccc4c0sc4gwww.82.25.105.179.sslip.io:5001/api';
 
 export default function Home() {
   const [users, setUsers] = useState<User[]>([]);
@@ -27,7 +27,7 @@ export default function Home() {
 
   useEffect(() => {
     // Initialize socket connection
-    const wsUrl = process.env.NEXT_PUBLIC_WS_URL || 'http://localhost:3001';
+    const wsUrl = 'http://uwwss4w0go8ccc4c0sc4gwww.82.25.105.179.sslip.io:5001';
     const newSocket = io(wsUrl);
     setSocket(newSocket);
 
