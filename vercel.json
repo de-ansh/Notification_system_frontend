@@ -9,5 +9,9 @@
     "app/page.tsx": {
       "maxDuration": 30
     }
+  },
+  "env": {
+    "NEXT_PUBLIC_API_BASE_URL": "http://uwwss4w0go8ccc4c0sc4gwww.82.25.105.179.sslip.io:5001/api",
+    "NEXT_PUBLIC_WS_URL": "http://uwwss4w0go8ccc4c0sc4gwww.82.25.105.179.sslip.io:5001"
   }
 } 
